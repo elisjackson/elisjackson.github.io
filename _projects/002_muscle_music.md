@@ -3,7 +3,7 @@ title: "Muscle music"
 publish: true
 description: "Generating music from muscle's electrical signals"
 projects_page_image: /assets/images/muscle_music/muscle_music_cover.png
-header_image: /assets/images/sunrise_alarm/main_image.png
+header_image: /assets/images/muscle_music/header.png
 layout: project
 permalink: /projects/muscle-music/
 date: 26/05/2025
