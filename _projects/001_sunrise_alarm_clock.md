@@ -123,7 +123,7 @@ USB-C charging is smart. It can deliver a wide voltage and current range, with t
 
 The correct way to negotiate the current supply is for the device (e.g. the Pico) to listen to what the supply can offer (e.g., "1.5A"), and limit it's draw accordingly. This is safe - the device could then be plugged into any USB source. If the device doesn't hear from the source (e.g. the source isn't USB-C), it can limit itself to draw a safe amount (e.g 0.5A), and if it does, then it can limit itself to the supply's maximum (e.g. 1.5A).
 
-In a bit of haste, I decided to shortcut this formal negotiation by wiring 5.1K resistors to ground on the USB-C CC pins, and leaving it there. With this, 3A *can* be delivered from USB-C. However - it can also try drawing 3A, even if the supply can't handle it. What happens next depends on how safe the charger is - hopefully, it has overcurrent protection and will either limit the supply itself.
+In a bit of haste, I decided to shortcut this formal negotiation by wiring 5.1K resistors to ground on the USB-C CC pins, and leaving it there. With this, 3A *can* be delivered from USB-C. However - it can also try drawing 3A, even if the supply can't handle it. What happens next depends on how safe the charger is - hopefully, it has overcurrent protection and will limit the supply itself.
 
 Relying on the safety net of the charger is obviosuly not ideal - my next iteration would fix this limitation.
 
