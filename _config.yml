@@ -26,6 +26,7 @@ minima:
   #     * solarized-dark     Dark variant of solarized color scheme.
   #     * solarized          Adaptive skin for solarized color scheme skins.
   skin: solarized-light
+  hide_site_feed_link: true
 
   # Specific pages for site navigation.
   #   If you wish to link only specific pages in the site-navigation, use this and list
