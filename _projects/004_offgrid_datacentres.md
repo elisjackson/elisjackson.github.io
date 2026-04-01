@@ -1,0 +1,51 @@
+---
+title: "Off-grid data centre app"
+publish: true
+description: "Optimise the power sources for an off-grid data centre"
+projects_page_image: \assets/images/datacentres/tile3.png
+header_image: /assets/images/datacentres/Results-4.png
+layout: project
+permalink: /projects/off-grid_data_centre/
+date: 20/03/2026
+modified_date: 20/03/2026
+---
+
+You can view the app [here](https://datacentres.eliswyn.com/).
+
+# What it does
+
+This app aims to demonstrate the most cost-effective power sources for an off-grid data centre. Secondarily, it served as something fun to busy myself with while outdoorsy hobbies were hampered by a broken rib and dreadful weather.
+
+![App demo](/assets/images/datacentres/recording.gif)
+
+# How it works
+
+The core of the app itself is PyPSA, a Python package for optimising energy systems. The PyPSA module is configured to dynamically build the generator and storage options, with some cost assumptions provided by the user. It then solves for the least-cost system on an annualised cost basis.
+
+The wind and Solar PV profiles are built from **ERA5** weather data, for the cell selected on the Plotly map. ERA5 provides hourly solar radiation data, and wind speed (at 100m) data, at a spatial resolution of 0.25° lat and long.
+
+**Solar PV profiles** are built by feeding the ERA5 data to the **pvlib** module. In generating the profiles, the pvlib module accounts for inverter clipping (the app assumes a DC:AC ratio of 1.25) and temperature-related losses.
+
+**Wind profiles** are built first by extrapolating the ERA5 wind speed data to a higher altitude (for representative onshore / offshore hub heights), and secondly by applying a wind turine power curve to the hub height wind speed. Wind speed is extrapolated from the ERA5 altitude using the wind profile power law. Currently a single typical onshore turbine power curve is applied regardless of whether an onshore or offshore cell is selected.
+
+This data, along with the selected cost parameters and other assumptions (most of which are listed in the UI) are fed to the PyPSA module to be optimised.
+
+# Architecture
+
+The image explains the architecture better than I can describe in words. But briefly:
+- **Pre-processing**: Python scripts pre-process the ERA5 data - which is pulled via an ERA5 API. Processed data is used for:
+  - Generating geojsons used in the front end (for the interactive map)
+  - Generating hourly weather profiles (parquet files) saved in AWS S3
+- **Front end:** is build in Plotly Dash. This is then hosted in GCP Run
+- **Back end:** (all defined in Terraform) The front end calls APIs (via AWS API Gateway and a Lambda), which runs the optimise jobs
+  - DynamoDB is also used to store job status, so the user gets periodic updates about how the job is going
+
+![System architecture](/assets/images/datacentres/architecture3.drawio.svg)
+
+# Flaws and to-dos
+
+- Tidy up repos & make public
+- Include discounting
+- Add an option for electricity from the grid?
+- Use a "typical meteorological year" weather file - the current weather data (ERA5) uses 2025 weather. This was an unusually sunny year in the UK, which likely makes Solar PV come out a bit more favourable than it should
+- **Any other ideas or find an issue? Let me know** - you can contact me through [my LinkedIn](https://www.linkedin.com/in/elis-jackson-a428801a5)
