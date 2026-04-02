@@ -2,7 +2,7 @@
   display: grid;
   grid-template-columns: repeat(2, minmax(220px, 1fr));
   gap: 1.5rem;
-  margin-top: 2rem;
+  margin-top: 1rem;
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
@@ -191,6 +191,22 @@
   font-weight: 500;
 }
 
+
+img[src$=".gif"] {
+  display: block;
+  max-height: 350px;
+  width: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+img[src$=".svg"] {
+  display: block;
+  max-height: 550px;
+  width: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
 
 .video-container {
   aspect-ratio: 16 / 9;
