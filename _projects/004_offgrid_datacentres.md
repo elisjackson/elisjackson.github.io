@@ -32,11 +32,16 @@ This data, along with the selected cost parameters and other assumptions (most o
 
 # Architecture
 
-The image explains the architecture better than I can describe in words. But briefly:
+I gained my AWS Archiect Associate certification earlier this year, so I was keen to build on that knowledge during this project.
+
+As the optimisation module does some heavy lifting, this is separated from the web server. The module runs in an AWS Lambda, triggered via a REST API.
+
+The DynamoDB element wasn't strictly necessary, but is used to record a job's progress (and provide progress feedback to the user - accessed with another REST API). I mainly wanted the extra practice of setting up DynamoDB here.
+
 - **Pre-processing**: Python scripts pre-process the ERA5 data - which is pulled via an ERA5 API. Processed data is used for:
   - Generating geojsons used in the front end (for the interactive map)
   - Generating hourly weather profiles (parquet files) saved in AWS S3
-- **Front end:** is build in Plotly Dash. This is then hosted in GCP Run
+- **Front end:** is built using Plotly Dash. This is then hosted in GCP Run
 - **Back end:** (all defined in Terraform) The front end calls APIs (via AWS API Gateway and a Lambda), which runs the optimise jobs
   - DynamoDB is also used to store job status, so the user gets periodic updates about how the job is going
 
