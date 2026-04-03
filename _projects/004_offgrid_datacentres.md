@@ -6,15 +6,17 @@ projects_page_image: \assets/images/datacentres/tile3.png
 header_image: /assets/images/datacentres/Results-4.png
 layout: project
 permalink: /projects/off-grid_data_centre/
-date: 20/03/2026
-modified_date: 20/03/2026
+date: 03/04/2026
+modified_date: 03/04/2026
 ---
 
 You can view the app [here](https://datacentres.eliswyn.com/).
 
 # What it does
 
-This app aims to demonstrate the most cost-effective power sources for an off-grid data centre. Secondarily, it served as something fun to busy myself with while outdoorsy hobbies were hampered by a broken rib and dreadful weather.
+This app aims to demonstrate the most cost-effective power sources for an off-grid data centre. 
+
+I built it in part to build on some technical knowledge, and in part as something fun to busy with while outdoor hobbies were hampered by a broken rib and a spell of particularly British weather.
 
 ![App demo](/assets/images/datacentres/recording.gif)
 
@@ -50,7 +52,7 @@ The DynamoDB element wasn't strictly necessary, but is used to record a job's pr
 # Flaws and to-dos
 
 - Tidy up repos & make public
-- Include discounting
 - Add an option for electricity from the grid?
 - Use a "typical meteorological year" weather file - the current weather data (ERA5) uses 2025 weather. This was an unusually sunny year in the UK, which likely makes Solar PV come out a bit more favourable than it should
+- I think the default SMR CAPEX assumptions are probably a bit on the low side, comparing the costs with recent established nuclear costs. The latest Sizewell C construction cost is ~£12k/kW
 - **Any other ideas or find an issue? Let me know** - you can contact me through [my LinkedIn](https://www.linkedin.com/in/elis-jackson-a428801a5)
