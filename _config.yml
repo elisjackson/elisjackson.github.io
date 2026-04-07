@@ -34,6 +34,7 @@ minima:
   #   should be rendered.
   nav_pages:
     - projects.md
+    - cv.md
 
   # Set to `true` to show excerpts on the homepage.
   show_excerpts: false

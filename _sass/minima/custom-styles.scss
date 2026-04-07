@@ -222,3 +222,68 @@ img[src$=".svg"] {
   object-fit: cover;
 }
 
+/* CV language switcher (English / Français) */
+.cv-header.post-header {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.cv-header {
+  margin-bottom: 1.25rem;
+}
+
+.cv-lang-switch {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 0;
+  // margin-bottom: 1rem;
+  border: 1px solid #93a1a1;
+  border-radius: 3px;
+  overflow: hidden;
+  font-size: 0.95rem;
+}
+
+.cv-lang-switch .cv-lang-link,
+.cv-lang-switch .cv-lang-current {
+  padding: 0.35rem 0.85rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.cv-lang-switch .cv-lang-flag {
+  display: block;
+  flex-shrink: 0;
+  width: 0.95rem !important;
+  height: 0.95rem !important;
+  min-width: 0.95rem;
+  max-width: 0.95rem;
+  min-height: 0.95rem;
+  max-height: 0.95rem;
+  aspect-ratio: 1 / 1 !important;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-top: 0 !important;
+  object-position: center !important;
+  border: 1px solid #d3d3d3;
+}
+
+.cv-lang-switch .cv-lang-current {
+  background-color: #eee8d5;
+  font-weight: 600;
+  color: #586e75;
+}
+
+.cv-lang-switch .cv-lang-link {
+  text-decoration: none;
+  color: #657b83;
+  background-color: transparent;
+}
+
+.cv-lang-switch .cv-lang-link:hover,
+.cv-lang-switch .cv-lang-link:focus {
+  background-color: #fdf6e3;
+  text-decoration: none;
+  color: #586e75;
+}
+

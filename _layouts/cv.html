@@ -1,0 +1,56 @@
+---
+layout: base
+---
+{% assign cv_url_en = '/cv/' | relative_url %}
+{% assign cv_url_fr = '/cv/fr/' | relative_url %}
+{% assign cv_url_cy = '/cv/cy/' | relative_url %}
+{% if page.lang == 'fr' %}
+  {% assign cv_nav_label = 'Langue' %}
+{% elsif page.lang == 'cy' %}
+  {% assign cv_nav_label = 'Iaith' %}
+{% else %}
+  {% assign cv_nav_label = 'Language' %}
+{% endif %}
+
+<article class="post cv-page">
+  <header class="post-header cv-header">
+    <nav class="cv-lang-switch" aria-label="{{ cv_nav_label }}">
+      {% if page.lang == 'en' %}
+        <span class="cv-lang-current" aria-current="page" lang="en">
+          <img class="cv-lang-flag" src="{{ '/assets/images/cv/England.png' | relative_url }}" alt="" aria-hidden="true">
+          English
+        </span>
+      {% else %}
+        <a class="cv-lang-link" href="{{ cv_url_en }}" hreflang="en" lang="en">
+          <img class="cv-lang-flag" src="{{ '/assets/images/cv/England.png' | relative_url }}" alt="" aria-hidden="true">
+          English
+        </a>
+      {% endif %}
+      {% if page.lang == 'fr' %}
+        <span class="cv-lang-current" aria-current="page" lang="fr">
+          <img class="cv-lang-flag" src="{{ '/assets/images/cv/France.png' | relative_url }}" alt="" aria-hidden="true">
+          Français
+        </span>
+      {% else %}
+        <a class="cv-lang-link" href="{{ cv_url_fr }}" hreflang="fr" lang="fr">
+          <img class="cv-lang-flag" src="{{ '/assets/images/cv/France.png' | relative_url }}" alt="" aria-hidden="true">
+          Français
+        </a>
+      {% endif %}
+      {% if page.lang == 'cy' %}
+        <span class="cv-lang-current" aria-current="page" lang="cy">
+          <img class="cv-lang-flag" src="{{ '/assets/images/cv/Wales.png' | relative_url }}" alt="" aria-hidden="true">
+          Cymraeg
+        </span>
+      {% else %}
+        <a class="cv-lang-link" href="{{ cv_url_cy }}" hreflang="cy" lang="cy">
+          <img class="cv-lang-flag" src="{{ '/assets/images/cv/Wales.png' | relative_url }}" alt="" aria-hidden="true">
+          Cymraeg
+        </a>
+      {% endif %}
+    </nav>
+  </header>
+  <div class="cv-body">
+    {{ content }}
+  </div>
+</article>
