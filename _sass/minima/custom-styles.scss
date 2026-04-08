@@ -239,12 +239,24 @@ img[src$=".svg"] {
   // margin-bottom: 1rem;
   border: 1px solid #93a1a1;
   border-radius: 3px;
-  overflow: hidden;
+  /* overflow: visible so disabled-language ::after tooltips are not clipped */
+  overflow: visible;
   font-size: 0.95rem;
 }
 
+.cv-lang-switch > :first-child {
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+
+.cv-lang-switch > :last-child {
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
 .cv-lang-switch .cv-lang-link,
-.cv-lang-switch .cv-lang-current {
+.cv-lang-switch .cv-lang-current,
+.cv-lang-switch .cv-lang-disabled {
   padding: 0.35rem 0.85rem;
   display: inline-flex;
   align-items: center;
@@ -285,6 +297,48 @@ img[src$=".svg"] {
   background-color: #fdf6e3;
   text-decoration: none;
   color: #586e75;
+}
+
+.cv-lang-switch .cv-lang-disabled {
+  position: relative;
+  color: #93a1a1;
+  background-color: #f5f0e0;
+  cursor: default;
+  user-select: none;
+}
+
+/* Hover/focus tooltip */
+.cv-lang-switch .cv-lang-disabled::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 6px);
+  transform: translateX(-50%);
+  padding: 0.3rem 0.45rem;
+  font-size: 0.72rem;
+  font-weight: 500;
+  line-height: 1.2;
+  white-space: nowrap;
+  color: #fdf6e3;
+  background-color: #586e75;
+  border-radius: 4px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.18);
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.12s ease;
+  z-index: 20;
+}
+
+.cv-lang-switch .cv-lang-disabled:hover::after,
+.cv-lang-switch .cv-lang-disabled:focus-visible::after {
+  opacity: 1;
+  visibility: visible;
+}
+
+.cv-lang-switch .cv-lang-disabled:focus-visible {
+  outline: 2px solid #586e75;
+  outline-offset: 2px;
 }
 
 /* CV in-page TOC: stacked; wide viewports use grid + negative margin */

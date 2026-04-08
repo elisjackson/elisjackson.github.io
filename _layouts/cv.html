@@ -2,8 +2,6 @@
 layout: base
 ---
 {% assign cv_url_en = '/cv/' | relative_url %}
-{% assign cv_url_fr = '/cv/fr/' | relative_url %}
-{% assign cv_url_cy = '/cv/cy/' | relative_url %}
 {% if page.lang == 'fr' %}
   {% assign cv_nav_label = 'Langue' %}
   {% assign cv_toc_title = 'Table des matières' %}
@@ -35,10 +33,17 @@ layout: base
           Français
         </span>
       {% else %}
-        <a class="cv-lang-link" href="{{ cv_url_fr }}" hreflang="fr" lang="fr">
+        <span
+          class="cv-lang-disabled"
+          lang="fr"
+          data-tooltip="Bientôt disponible"
+          aria-disabled="true"
+          aria-label="Français — Bientôt disponible"
+          tabindex="0"
+        >
           <img class="cv-lang-flag" src="{{ '/assets/images/cv/France.png' | relative_url }}" alt="" aria-hidden="true">
           Français
-        </a>
+        </span>
       {% endif %}
       {% if page.lang == 'cy' %}
         <span class="cv-lang-current" aria-current="page" lang="cy">
@@ -46,10 +51,17 @@ layout: base
           Cymraeg
         </span>
       {% else %}
-        <a class="cv-lang-link" href="{{ cv_url_cy }}" hreflang="cy" lang="cy">
+        <span
+          class="cv-lang-disabled"
+          lang="cy"
+          data-tooltip="Dod yn fuan"
+          aria-disabled="true"
+          aria-label="Cymraeg — Dod yn fuan"
+          tabindex="0"
+        >
           <img class="cv-lang-flag" src="{{ '/assets/images/cv/Wales.png' | relative_url }}" alt="" aria-hidden="true">
           Cymraeg
-        </a>
+        </span>
       {% endif %}
     </nav>
   </header>
