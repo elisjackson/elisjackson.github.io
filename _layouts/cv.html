@@ -6,10 +6,13 @@ layout: base
 {% assign cv_url_cy = '/cv/cy/' | relative_url %}
 {% if page.lang == 'fr' %}
   {% assign cv_nav_label = 'Langue' %}
+  {% assign cv_toc_title = 'Table des matières' %}
 {% elsif page.lang == 'cy' %}
   {% assign cv_nav_label = 'Iaith' %}
+  {% assign cv_toc_title = 'Ar y dudalen' %}
 {% else %}
   {% assign cv_nav_label = 'Language' %}
+  {% assign cv_toc_title = 'Table of Contents' %}
 {% endif %}
 
 <article class="post cv-page">
@@ -50,7 +53,13 @@ layout: base
       {% endif %}
     </nav>
   </header>
-  <div class="cv-body">
-    {{ content }}
+  <div class="cv-layout">
+    <nav class="cv-toc" id="cv-toc" aria-labelledby="cv-toc-heading">
+      <h2 class="cv-toc-title" id="cv-toc-heading">{{ cv_toc_title }}</h2>
+    </nav>
+    <div class="cv-body">
+      {{ content }}
+    </div>
   </div>
 </article>
+{% include cv-toc-script.html %}
