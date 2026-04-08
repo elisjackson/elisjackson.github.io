@@ -1,0 +1,166 @@
+<script>
+(function () {
+  document.addEventListener("DOMContentLoaded", function () {
+    if (!document.querySelector(".cv-page")) return;
+
+    var toc = document.getElementById("cv-toc");
+    var body = document.querySelector(".cv-body");
+    if (!toc || !body) return;
+
+    var headings = body.querySelectorAll("h1, h2");
+    if (!headings.length) {
+      toc.hidden = true;
+      toc.setAttribute("aria-hidden", "true");
+      return;
+    }
+
+    function slugify(text) {
+      var s = text.trim().toLowerCase().replace(/\s+/g, "-");
+      s = s.replace(/[^a-z0-9\u00C0-\u024f\-]/gi, "");
+      return s.replace(/^-+|-+$/g, "") || "section";
+    }
+
+    function ensureId(el) {
+      if (el.id) return el.id;
+      var base = slugify(el.textContent || "");
+      var id = base;
+      var n = 0;
+      while (document.getElementById(id)) {
+        id = base + "-" + ++n;
+      }
+      el.id = id;
+      return id;
+    }
+
+    function shortJobTitleForToc(full) {
+      var s = full.trim();
+      var sep = " - ";
+      var i = s.indexOf(sep);
+      if (i === -1) {
+        sep = " — ";
+        i = s.indexOf(sep);
+      }
+      if (i === -1) return s;
+      var rest = s.slice(i + sep.length).trim();
+      return rest || s;
+    }
+
+    function isWorkExperienceH1(text) {
+      var key = text.trim().toLowerCase();
+      return (
+        key === "work experience" ||
+        key === "expérience professionnelle" ||
+        key === "profiad gwaith"
+      );
+    }
+
+    /** Puts trailing "(…)" (e.g. years) on its own line in the TOC link. */
+    function fillTocLinkLabel(a, labelText) {
+      var label = labelText.trim();
+      var m = label.match(/^(.+?)(\s*\([^)]+\))$/);
+      a.textContent = "";
+      if (m) {
+        var main = document.createElement("span");
+        main.className = "cv-toc-line-main";
+        main.textContent = m[1].trim();
+        var years = document.createElement("span");
+        years.className = "cv-toc-line-years";
+        years.textContent = m[2].trim();
+        a.appendChild(main);
+        a.appendChild(years);
+      } else {
+        a.textContent = label;
+      }
+    }
+
+    var list = document.createElement("ul");
+    list.className = "cv-toc-list";
+
+    var linkById = {};
+    var inWorkExperience = false;
+
+    headings.forEach(function (h) {
+      var id = ensureId(h);
+      var raw = h.textContent.trim();
+      if (h.tagName === "H1") {
+        inWorkExperience = isWorkExperienceH1(raw);
+      }
+      var li = document.createElement("li");
+      var a = document.createElement("a");
+      a.href = "#" + id;
+      if (h.tagName === "H2" && inWorkExperience) {
+        var shortLabel = shortJobTitleForToc(raw);
+        fillTocLinkLabel(a, shortLabel);
+        if (shortLabel !== raw) {
+          a.setAttribute("title", raw);
+        }
+      } else {
+        fillTocLinkLabel(a, raw);
+      }
+      a.className =
+        h.tagName === "H1" ? "cv-toc-link cv-toc-level-1" : "cv-toc-link cv-toc-level-2";
+      li.appendChild(a);
+      list.appendChild(li);
+      linkById[id] = a;
+    });
+
+    toc.appendChild(list);
+
+    function setActive(id) {
+      Object.keys(linkById).forEach(function (key) {
+        var a = linkById[key];
+        var on = key === id;
+        a.classList.toggle("is-active", on);
+        if (on) {
+          a.setAttribute("aria-current", "location");
+        } else {
+          a.removeAttribute("aria-current");
+        }
+      });
+    }
+
+    function syncFromScroll() {
+      var marker = window.scrollY + 120;
+      var active = headings[0];
+      var i;
+      for (i = 0; i < headings.length; i++) {
+        var h = headings[i];
+        var top = h.getBoundingClientRect().top + window.pageYOffset;
+        if (top <= marker) {
+          active = h;
+        }
+      }
+      setActive(active.id);
+    }
+
+    var headingList = Array.prototype.slice.call(headings);
+
+    var syncScheduled = false;
+    function scheduleSync() {
+      if (syncScheduled) return;
+      syncScheduled = true;
+      requestAnimationFrame(function () {
+        syncScheduled = false;
+        syncFromScroll();
+      });
+    }
+
+    var io = new IntersectionObserver(scheduleSync, {
+      root: null,
+      rootMargin: "0px",
+      threshold: 0,
+    });
+    headingList.forEach(function (h) {
+      io.observe(h);
+    });
+
+    window.addEventListener("scroll", scheduleSync, { passive: true });
+    window.addEventListener("resize", scheduleSync, { passive: true });
+    scheduleSync();
+
+    if (location.hash) {
+      requestAnimationFrame(scheduleSync);
+    }
+  });
+})();
+</script>

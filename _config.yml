@@ -34,6 +34,11 @@ minima:
   #   should be rendered.
   nav_pages:
     - projects.md
+    - cv.md
+
+  nav_external_links:
+    - title: Data centres app
+      url: "https://datacentres.eliswyn.com/"
 
   # Set to `true` to show excerpts on the homepage.
   show_excerpts: false

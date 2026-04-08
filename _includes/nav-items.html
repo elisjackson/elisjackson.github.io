@@ -1,4 +1,9 @@
 <div class="nav-items">
+  {%- if site.minima.nav_external_links -%}
+  {%- for link in site.minima.nav_external_links -%}
+  <a class="nav-item" href="{{ link.url }}" target="_blank" rel="noopener noreferrer">{{ link.title | escape }}</a>
+  {%- endfor -%}
+  {%- endif -%}
   {%- for path in include.paths -%}
   {%- assign hyperpage = site.pages | where: "path", path | first -%}
   {%- if hyperpage.title %}
