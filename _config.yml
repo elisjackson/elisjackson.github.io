@@ -28,6 +28,10 @@ minima:
   skin: solarized-light
   hide_site_feed_link: true
 
+  # Temporary: disable until CV language/TOC work on GitHub Pages
+  cv_show_language_switch: false
+  cv_show_toc: false
+
   # Specific pages for site navigation.
   #   If you wish to link only specific pages in the site-navigation, use this and list
   #   the `path` property (as represented via Liquid) of the pages in the order they
@@ -37,7 +41,7 @@ minima:
     - cv.md
 
   nav_external_links:
-    - title: Data centres app
+    - title: Off-grid data centres app
       url: "https://datacentres.eliswyn.com/"
 
   # Set to `true` to show excerpts on the homepage.

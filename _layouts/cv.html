@@ -1,19 +1,29 @@
 ---
 layout: base
 ---
+{% if site.minima.cv_show_language_switch %}
 {% assign cv_url_en = '/cv/' | relative_url %}
 {% if page.lang == 'fr' %}
   {% assign cv_nav_label = 'Langue' %}
-  {% assign cv_toc_title = 'Table des matières' %}
 {% elsif page.lang == 'cy' %}
   {% assign cv_nav_label = 'Iaith' %}
-  {% assign cv_toc_title = 'Ar y dudalen' %}
 {% else %}
   {% assign cv_nav_label = 'Language' %}
+{% endif %}
+{% endif %}
+
+{% if site.minima.cv_show_toc %}
+{% if page.lang == 'fr' %}
+  {% assign cv_toc_title = 'Table des matières' %}
+{% elsif page.lang == 'cy' %}
+  {% assign cv_toc_title = 'Ar y dudalen' %}
+{% else %}
   {% assign cv_toc_title = 'Table of Contents' %}
+{% endif %}
 {% endif %}
 
 <article class="post cv-page">
+  {% if site.minima.cv_show_language_switch %}
   <header class="post-header cv-header">
     <nav class="cv-lang-switch" aria-label="{{ cv_nav_label }}">
       {% if page.lang == 'en' %}
@@ -65,13 +75,18 @@ layout: base
       {% endif %}
     </nav>
   </header>
+  {% endif %}
   <div class="cv-layout">
+    {% if site.minima.cv_show_toc %}
     <nav class="cv-toc" id="cv-toc" aria-labelledby="cv-toc-heading">
       <h2 class="cv-toc-title" id="cv-toc-heading">{{ cv_toc_title }}</h2>
     </nav>
+    {% endif %}
     <div class="cv-body">
       {{ content }}
     </div>
   </div>
 </article>
+{% if site.minima.cv_show_toc %}
 {% include cv-toc-script.html %}
+{% endif %}

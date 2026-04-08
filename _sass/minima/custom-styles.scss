@@ -437,7 +437,8 @@ $cv-toc-gap: 1.25rem;
     width: calc(100% + #{$cv-toc-column-width} + #{$cv-toc-gap});
   }
 
-  .post.cv-page .cv-layout:has(#cv-toc[hidden]) {
+  .post.cv-page .cv-layout:has(#cv-toc[hidden]),
+  .post.cv-page .cv-layout:not(:has(#cv-toc)) {
     grid-template-columns: 1fr;
     margin-left: 0;
     width: 100%;
