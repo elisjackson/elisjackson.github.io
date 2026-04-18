@@ -29,7 +29,7 @@ minima:
   hide_site_feed_link: true
 
   # Temporary: disable until CV language/TOC work on GitHub Pages
-  cv_show_language_switch: false
+  cv_show_language_switch: true
   cv_show_toc: false
 
   # Specific pages for site navigation.

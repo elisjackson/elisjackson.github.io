@@ -117,7 +117,7 @@
   border-radius: 50%;
 }
 
-.post-header img {
+.post-header:not(.cv-header) img {
   width: 100%;
   aspect-ratio: 2 / 1;
   object-fit: cover;
@@ -266,17 +266,17 @@ img[src$=".svg"] {
 .cv-lang-switch .cv-lang-flag {
   display: block;
   flex-shrink: 0;
-  width: 0.95rem !important;
-  height: 0.95rem !important;
+  width: 0.95rem;
+  height: 0.95rem;
   min-width: 0.95rem;
   max-width: 0.95rem;
   min-height: 0.95rem;
   max-height: 0.95rem;
-  aspect-ratio: 1 / 1 !important;
+  aspect-ratio: 1 / 1;
   border-radius: 50%;
   object-fit: cover;
-  margin-top: 0 !important;
-  object-position: center !important;
+  margin-top: 0;
+  object-position: center;
   border: 1px solid #d3d3d3;
 }
 
