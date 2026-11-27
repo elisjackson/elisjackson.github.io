@@ -7,6 +7,15 @@ permalink: /cv
 
 # Work experience
 
+## Advanced Infrastructure Technologies - Senior Energy Modeller (2026-)
+
+- Leading the technical development of a new application release, that helps municipalities to evaluate domestic decarbonisation strategies, soon extending to non-domestic, transport and large-scale generation sectors
+- Formulated, implemented and validated the Linear Programming (LP) and Mixed-Integer Linear Programming (MILP) optimisation engine underpinning the energy model
+- Wrote backend Python code backed by Pydantic data validation and modelling, accelerated with Claude Code
+- Accelerated methodology refinement by prototyping new modules, using synthetic / dummy input datasets
+- Cross-collaborated with the Product team to define model methodologies, and with Dev team to agree on cloud infrastructure and APIs
+- Engaged with clients to explain methodologies, validate technical approaches and gather feedback
+
 ## Energy Systems Catapult - Senior Modelling Analyst (2024-2026)
 
 - **Energy modelling consultant and developer**
